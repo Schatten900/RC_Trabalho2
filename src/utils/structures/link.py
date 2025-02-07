@@ -20,7 +20,7 @@ class Link():
                 Computes the total delay (transmission + propagation).
     """
 
-    SPEED_OF_LIGHT_FIBER = 2e8  #(200,000,000 m/s)
+    SPEED_OF_LIGHT_FIBER = 3e8  #(300,000,000 m/s)
 
     def __init__(self, distance=None, transmissionRate=None):
         """

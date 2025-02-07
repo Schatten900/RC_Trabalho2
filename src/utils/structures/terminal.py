@@ -109,7 +109,7 @@ class Terminal():
         
         output = []
         for index, path in enumerate(path_info):
-            string = f"{index}    {(path[1] * 1000) + random.uniform(0.1, 0.2):.2f}ms    {(path[1] * 1000) + random.uniform(0.1, 0.2):.2f}ms    {(path[1] * 1000) + random.uniform(0.1, 0.2):.2f}ms    {path[0]}"
+            string = f"{index+1}    {(path[1] * 1000) + random.uniform(0.1, 0.2):.2f}ms    {(path[1] * 1000) + random.uniform(0.1, 0.2):.2f}ms    {(path[1] * 1000) + random.uniform(0.1, 0.2):.2f}ms    {path[0]}"
             output.append(string)
 
         print(f"Tracing route to {destiny.identifier} over a maximum of 30 hops:\n")
