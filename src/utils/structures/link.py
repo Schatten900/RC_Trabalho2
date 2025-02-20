@@ -20,7 +20,8 @@ class Link():
                 Computes the total delay (transmission + propagation).
     """
 
-    SPEED_OF_LIGHT_FIBER = 3e8  #(300,000,000 m/s)
+    SPEED_OF_FIBER = 3e8  #(300,000,000 m/s)
+    SPEED_OF_COAXIAL = 2e8  #(200,000,000 m/s)
 
     def __init__(self, distance=None, transmissionRate=None):
         """
@@ -55,6 +56,9 @@ class Link():
             float: The transmission delay in seconds.
         """
         
+        if self.transmissionRate == 0:
+            return 0
+        
         return packet_size / self.transmissionRate
 
     def calculate_propagation_delay(self) -> float:
@@ -67,7 +71,7 @@ class Link():
             float: The propagation delay in seconds.
         """
 
-        return self.distance / self.SPEED_OF_LIGHT_FIBER
+        return self.distance / self.SPEED_OF_FIBER
 
     def calculate_delay(self, packet_size: float) -> float:
         """

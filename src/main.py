@@ -42,14 +42,14 @@ Authors
     - Carlos Cauã
 """
 
-from utils.settings.adjascentVertices import adjacent_vertices
+from utils.settings.adjascentVertices import major_subnets, conections_in_same_router, host_subnets
 from utils.functions.constructGraph import construct_graph
 from utils.structures.terminal import Terminal
 import os
 
 os.system('cls' if os.name == 'nt' else 'clear')
-graph, vertex_map = construct_graph(adjacent_vertices)
-terminal = Terminal(initial_vertex=vertex_map['H1'])
+graph, vertex_map = construct_graph(major_subnets, conections_in_same_router, host_subnets)
+terminal = Terminal(initial_vertex=vertex_map['192.168.10.1'])
 
 while True:
     str_input = input(f"root@{terminal.current_vertex.identifier}:~$ ")

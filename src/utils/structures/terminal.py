@@ -60,12 +60,15 @@ class Terminal():
         if (self.current_vertex is None) or (destiny is None) or (graph is None):
             raise ValueError("New host, graph and destiny need to be provided")
         
-        base_time_sec = dijkstra(graph=graph, start=self.current_vertex, end=destiny)[-1][1]
-        base_time_ms = base_time_sec * 1000
+        base_time_sec_go = dijkstra(graph=graph, start=self.current_vertex, end=destiny)[-1][1]
+        base_time_ms_go = base_time_sec_go * 1000
+
+        base_time_sec_back = dijkstra(graph=graph, start=destiny, end=self.current_vertex)[-1][1]
+        base_time_ms_back = base_time_sec_back * 1000
 
         times = []
         for i in range(4):
-            times.append(base_time_ms + random.uniform(0.1, 0.2))
+            times.append((base_time_ms_go + base_time_ms_back) + random.uniform(0.02, 0.01))
 
         variance = sum((t - sum(times) / len(times))**2 for t in times) / len(times)
         mdev = variance ** 0.5
@@ -86,6 +89,7 @@ class Terminal():
         for i in range(len(output)):
             if (i <= 4) and (i > 0):
                 sleep(times[i - 1] / 1000)
+
             print(output[i])
 
     def traceroute(self, destiny=None, graph=None):
@@ -109,13 +113,18 @@ class Terminal():
         
         output = []
         for index, path in enumerate(path_info):
-            string = f"{index+1}    {(path[1] * 1000) + random.uniform(0.1, 0.2):.2f}ms    {(path[1] * 1000) + random.uniform(0.1, 0.2):.2f}ms    {(path[1] * 1000) + random.uniform(0.1, 0.2):.2f}ms    {path[0]}"
+            string = f"{index+1}    {(path[1] * 1000) + random.uniform(0.02, 0.01):.2f}ms    {(path[1] * 1000) + random.uniform(0.1, 0.2):.2f}ms    {(path[1] * 1000) + random.uniform(0.1, 0.2):.2f}ms    {path[0]}"
             output.append(string)
 
         print(f"Tracing route to {destiny.identifier} over a maximum of 30 hops:\n")
 
+        i = 1
         for i in range(len(output)):
             sleep(path_info[i][1])
             print(output[i])
+
+            if i > 30:
+                print("Maximum hops reached")
+                break
 
         print('\nTrace complete.\n')

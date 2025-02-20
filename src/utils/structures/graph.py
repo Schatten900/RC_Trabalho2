@@ -30,7 +30,8 @@ class Graph:
         """
 
         if self.is_linked(vertex1=vertex1, vertex2=vertex2):
-            raise ValueError(f"The provided vertices {vertex1} and {vertex2} are already linked")
+            self.links[vertex1].remove(vertex2) 
+            self.links[vertex2].remove(vertex1)
         
         self.links[vertex1].append((vertex2, link)) 
         self.links[vertex2].append((vertex1, link))            
