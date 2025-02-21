@@ -89,7 +89,16 @@ while True:
 
         # CHANGENETWORK - Select a new type of network
         elif str_input[0] == 'changenetwork':
-            if (str_input[1] == 'fiber') or (str_input[1] == 'coaxial'):
+            if (str_input[1] == 'fiber'):
+                graph, vertex_map = construct_graph(major_subnets, conections_in_same_router, host_subnets, 'fiber')
+                graph.construct_routings_tables(vertex_map)
+
+                os.system('cls' if os.name == 'nt' else 'clear')
+                print('New type of network defined!')
+                sleep(2)
+                os.system('cls' if os.name == 'nt' else 'clear')
+
+            if (str_input[1] == 'coaxial'):
                 graph, vertex_map = construct_graph(major_subnets, conections_in_same_router, host_subnets, 'coaxial')
                 graph.construct_routings_tables(vertex_map)
 
