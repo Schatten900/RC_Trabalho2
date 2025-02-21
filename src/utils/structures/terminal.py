@@ -132,12 +132,13 @@ class Terminal():
             actual_hope_time_comeback = vertex_map[pointer.next_hop(destiny)].routing_table[pointer.identifier][1][1] * 1000
             hop_time_package += actual_hope_time_comeback
 
-            sleep(hop_time_package / 10)
-            
-            print((f'{hop_count}     {round(hop_time_package + random.uniform(0.1, 0.4), 2)} ms     {round(hop_time_package + random.uniform(0.1, 0.4), 2)} ms    {round(hop_time_package + random.uniform(0.1, 0.4), 2)} ms    {pointer.routing_table[destiny][1][0]}'))
+            if actual_hope_time_going > 0:
+
+                sleep(hop_time_package / 10)
+                print((f'{hop_count}     {round(hop_time_package + random.uniform(0.1, 0.4), 2)} ms     {round(hop_time_package + random.uniform(0.1, 0.4), 2)} ms    {round(hop_time_package + random.uniform(0.1, 0.4), 2)} ms    {pointer.routing_table[destiny][1][0]}'))
+                hop_count += 1
 
             pointer = vertex_map[pointer.next_hop(destiny)]
-            hop_count += 1
 
             if hop_count > 30:
                 print('\nMax hops reached')
