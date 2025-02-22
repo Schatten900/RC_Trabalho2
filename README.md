@@ -24,7 +24,7 @@ Certifique-se de ter Python instalado na versão 3.10.10 ou mais recente (não �
    ```
 2. Execute o script dentro da pasta principal do projeto:
    ```sh
-   python3 main.py
+   python3 src/main.py
    ```
 
 ## Comandos Disponíveis
