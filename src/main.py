@@ -38,7 +38,7 @@ Example Commands:
 Authors
 -----------------
     - José Neto Souza
-    - Luca Merigion
+    - Luca Megiorin
     - Carlos Cauã
 """
 
